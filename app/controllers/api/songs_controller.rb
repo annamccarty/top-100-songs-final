@@ -4,12 +4,13 @@ class Api::SongsController < ApplicationController
   end
 
   def create
-    attrs = params.require(:Song).permit(:name, :artist, :genre, :rank)
+    attrs = params.require(:song).permit(:name, :artist, :rank, :genre)
     song = Song.new(attrs)
     if song.save
       render json: song
     else
-      render json: {errors: item.errors }, status: 422
+      render json: {errors: song.errors }, status: 422
+    end
   end
 
   def edit
@@ -18,5 +19,4 @@ class Api::SongsController < ApplicationController
   def destroy
     Song.find(params[:id]).destroy
   end
-
 end

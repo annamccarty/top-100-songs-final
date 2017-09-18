@@ -1,11 +1,18 @@
 import React from 'react';
+import Song from './Song';
 
-class SongList extends React.Component {
-  render() {
-    return (
-      <div>This is the List</div>
-    )
-  }
-}
+const SongList = ({ songs, editSong, deleteSong }) => (
+  <div className="row">
+    { songs.map( song =>
+        <Song
+          key={song.id}
+          {...song}
+          editSong={editSong}
+          deleteSong={deleteSong}
+        />
+      )
+    }
+  </div>
+)
 
 export default SongList;
